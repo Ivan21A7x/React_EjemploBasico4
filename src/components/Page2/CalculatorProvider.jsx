@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useCallback } from 'react';
 
 // Crear el contexto para la calculadora
 export const CalculatorContext = createContext();
@@ -15,7 +15,7 @@ export const CalculatorProvider = ({ children }) => {
     const [displayText, setDisplayText] = useState('');
 
     // Actualiza el displayText cada vez que cambian los números, la operación o el resultado
-    const updateDisplayText = () => {
+    const updateDisplayText = useCallback(() => {
         let operationS = '';
         switch (operation) {
             case 'add':
@@ -33,34 +33,19 @@ export const CalculatorProvider = ({ children }) => {
             case 'sub':
                 operationS = '-';
                 break;
-            case 'null':
-                operationS = '';
-                break;
             default:
                 break;
         }
 
         setDisplayText(`${firstNumber} ${operationS} ${secondNumber}`);
-
-        // if (operation === null) {
-        //     setDisplayText(firstNumber);
-        // } else if (secondNumber === '') {
-        //     setDisplayText(`${firstNumber} ${operationS}`);
-        // } else {
-        //     setDisplayText(`${firstNumber} ${operationS} ${secondNumber}`);
-        // }
-    };
+    }, [firstNumber, secondNumber, operation]);
 
     // Al hacer clic en un número, acumula el dígito en el número adecuado
     const selectNumber = (number) => {
         if (operation === null) {
             setFirstNumber(prev => prev + number);
-            console.log("Primer número: ", firstNumber + number);
-            // updateDisplayText();
         } else {
             setSecondNumber(prev => prev + number);
-            console.log("Segundo número: ", secondNumber + number);
-            // updateDisplayText();
         }
         updateDisplayText();
     };
@@ -104,14 +89,8 @@ export const CalculatorProvider = ({ children }) => {
                 operationS = '-';
                 setCurrentSub(result);
             }
-            
-            setDisplayText(`${firstNumber} ${operationS} ${secondNumber} = ${result}`);
 
-            console.log("Resultado: ", result);
-            // Reiniciamos los valores
-            // setFirstNumber('');
-            // setSecondNumber('');
-            // setOperation(null);
+            setDisplayText(`${firstNumber} ${operationS} ${secondNumber} = ${result}`);
         }
     };
 
@@ -125,7 +104,7 @@ export const CalculatorProvider = ({ children }) => {
 
     useEffect(() => {
         updateDisplayText();
-    },[firstNumber, secondNumber, operation]);
+    }, [firstNumber, secondNumber, operation, updateDisplayText]);
 
     return (
         <CalculatorContext.Provider 

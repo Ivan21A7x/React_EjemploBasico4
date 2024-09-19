@@ -1,26 +1,39 @@
-import React from 'react'
-import UserItemComponent from './UserItemComponent'
+import React from 'react';
+import UserItemComponent from './UserItemComponent';
+import { Typography, List, ListItem, Divider } from '@mui/joy';
 
-export default function UserListComponent({usuarios}) {
+export default function UserListComponent({ usuarios }) {
     if (!usuarios || !Array.isArray(usuarios) || usuarios.length === 0) {
-        // console.log("No hay usuarios disponibles");
-        return <p className='text-black mb-4 p-2 font-bold'>Ingresa un usuario</p>;
+        return (
+            <Typography
+                level="body1"
+                sx={{ color: 'text.primary', mb: 2, p: 2, fontWeight: 'bold' }}
+            >
+                Ingresa un usuario
+            </Typography>
+        );
     }
+
     return (
         <div>
-            <br />
-            <br />
-            <p className='text-black mb-4 p-2 font-bold'> Usuarios:</p>
-            <ul className='flex flex-col text-center list-none'>
+            <Typography
+                level="body1"
+                sx={{ color: 'text.primary', mb: 2, p: 2, fontWeight: 'bold' }}
+            >Usuarios:</Typography>
+            <Divider />
+
+            <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 0 }}>
                 {usuarios.map((usuario, index) => (
-                    <div key={index}>
-                        <br />
-                            <UserItemComponent  usuario={usuario}/>
-                        <br />
-                        <hr />
-                    </div>            
+                    <React.Fragment key={index}>
+                        <ListItem
+                            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 0 }}
+                        >
+                            <UserItemComponent usuario={usuario} />
+                        </ListItem>
+                        <Divider />
+                    </React.Fragment>
                 ))}
-            </ul>
+            </List>
         </div>
-  )
+    );
 }

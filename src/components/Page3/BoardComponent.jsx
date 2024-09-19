@@ -3,6 +3,7 @@ import SecToDoComponent from './SecToDoComponent';
 import SecDoingComponent from './SecDoingComponent';
 import SecDoneComponent from './SecDoneComponent';
 import NewTaskComponent from './NewTaskComponent';
+import { Box } from '@mui/joy';
 
 const initialState = {
   todo: [],
@@ -62,12 +63,22 @@ export default function BoardComponent() {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 mt-12 w-full min-h-[550px] bg-gray-200 border border-black text-center place-items-center mx-auto">
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        m: 2,
+        minHeight: '550px',
+        border: '1px solid',
+        borderColor: 'black',
+        textAlign: 'center',
+        placeItems: 'center',
+      }}
+    >
       <SecToDoComponent tasks={state.todo} onMoveTask={moveTask} onUpdateTask={updateTaskText} />
       <SecDoingComponent tasks={state.doing} onMoveTask={moveTask} onUpdateTask={updateTaskText} />
       <SecDoneComponent tasks={state.done} onMoveTask={moveTask} onUpdateTask={updateTaskText} />
-
       <NewTaskComponent onAddTask={addTask} />
-    </div>
+    </Box>
   );
 }

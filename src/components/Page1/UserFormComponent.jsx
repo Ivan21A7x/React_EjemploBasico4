@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input, Button } from '@mui/joy';
 
 export default function UserFormComponent({addUser}) {
     const [nombre, setNombre] = useState("");
@@ -23,28 +24,84 @@ export default function UserFormComponent({addUser}) {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center mt-9">
-            <input 
-                className="m-2 p-2 w-1/2 text-center border border-black"
+            <Input
                 type="text" 
                 value={nombre} 
                 onChange={(e) => setNombre(e.target.value)} 
-                placeholder="Nombre" 
+                placeholder="Nombre"
+                size="md"
+                sx={{
+                    margin: '20px',
+                    fontWeight: 'bold',
+                    '--Input-focusedInset': 'var(--any, )',
+                    '--Input-focusedThickness': '0.25rem',
+                    '--Input-focusedHighlight': '#4CAF50',
+                    '&::before': {
+                        transition: 'box-shadow .15s ease-in-out',
+                    },
+                    '&:focus-within': {
+                        borderColor: 'darkslateblue',
+                    },
+                }}
+                required  
             />
-            <input 
-                className="m-2 p-2 w-1/2 text-center border border-black"
+            <Input 
                 type="number" 
                 value={edad} 
                 onChange={(e) => setEdad(e.target.value)} 
-                placeholder="Edad" 
+                placeholder="Edad"
+                size="md"
+                sx={{
+                    margin: '20px',
+                    fontWeight: 'bold',
+                    '--Input-focusedInset': 'var(--any, )',
+                    '--Input-focusedThickness': '0.25rem',
+                    '--Input-focusedHighlight': '#4CAF50',
+                    '&::before': {
+                        transition: 'box-shadow .15s ease-in-out',
+                    },
+                    '&:focus-within': {
+                        borderColor: 'darkslateblue',
+                    },
+                }}
+                required  
             />
-            <input 
-                className="m-2 p-2 w-1/2 text-center border border-black"
+            <Input 
                 type="text" 
                 value={id} 
                 onChange={(e) => setID(e.target.value)} 
                 placeholder="ID" 
+                size="md"
+                sx={{
+                    margin: '20px',
+                    fontWeight: 'bold',
+                    '--Input-focusedInset': 'var(--any, )',
+                    '--Input-focusedThickness': '0.25rem',
+                    '--Input-focusedHighlight': '#4CAF50',
+                    '&::before': {
+                        transition: 'box-shadow .15s ease-in-out',
+                    },
+                    '&:focus-within': {
+                        borderColor: 'darkslateblue',
+                    },
+                }}
+                required  
             />
-            <button className="m-2 p-2 bg-green-500 text-white border border-black font-bold" type="submit">Agregar Usuario</button>
+            <Button
+                type="submit"
+                size="lg"
+                variant="solid"
+                color="primary"
+                sx={{
+                    margin: '16px',
+                    // backgroundColor: '#4CAF50',
+                    // fontWeight: 'bold',
+                    // '&:hover': {
+                    //     backgroundColor: '#45A049',
+                    // },                        
+                }}
+            >Agregar usuario</Button>
+
         </form>
     );
 }

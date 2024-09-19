@@ -19,33 +19,48 @@ import OpTotalComponent from './OpTotalComponent';
 import DisplayComponent from './DisplayComponent';
 import { CalculatorProvider } from './CalculatorProvider';
 import OpACComponent from './OpACComponent';
+import { Box } from '@mui/joy';
 
 export default function CalculatorComponent() {
   return (
     <CalculatorProvider>
-      <div className="m-12 w-[400px] p-5 grid grid-cols-3 border border-red-500 justify-items-center items-center mx-auto bg-gray-500">
-        <DisplayComponent className="col-span-3" />
+      <Box
+      sx={{
+        m: 12,
+        width: '500px',
+        p: 5,
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        border: '1px solid black',
+        justifyItems: 'center',
+        alignItems: 'center',
+        mx: 'auto',
+        backgroundColor: 'darkslateblue',
+        borderRadius: 'lg',
+      }}
+    >
+      <DisplayComponent sx={{ gridColumn: 'span 3' }} />
 
-        <Number1Component />
-        <Number2Component />
-        <Number3Component />
-        <Number4Component />
-        <Number5Component />
-        <Number6Component />
-        <Number7Component />
-        <Number8Component />
-        <Number9Component />
-        <Number0Component />
-        <NumberDotComponent />
+      <Number1Component />
+      <Number2Component />
+      <Number3Component />
+      <Number4Component />
+      <Number5Component />
+      <Number6Component />
+      <Number7Component />
+      <Number8Component />
+      <Number9Component />
+      <Number0Component />
+      <NumberDotComponent />
 
-        <OpAddComponent />
-        <OpSubComponent />
-        <OpMulComponent />
-        <OpDivComponent />
-        <OpSqrComponent />
-        <OpTotalComponent />
-        <OpACComponent />
-      </div>
+      <OpAddComponent />
+      <OpSubComponent />
+      <OpMulComponent />
+      <OpDivComponent />
+      <OpSqrComponent />
+      <OpTotalComponent />
+      <OpACComponent />
+    </Box>
     </CalculatorProvider>
   );
 }

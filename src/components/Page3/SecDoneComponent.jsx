@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import TaskComponent from './TaskComponent';
+import { Box, Typography } from '@mui/joy';
 
 export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask }) {
   const tasksRef = useRef(null);
@@ -18,14 +19,33 @@ export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask }) {
   };
 
   return (
-    <div 
-      className="bg-green-600/50 border border-black w-full h-full p-4"
+    <Box
+      sx={{
+        backgroundColor: '#bdffaa',
+        border: '1px solid',
+        borderColor: 'black',
+        width: '100%',
+        height: '100%',
+        p: 4,
+      }}
       onDrop={handleDrop('done')}
       onDragOver={(e) => e.preventDefault()}
     >
-      <h2 className="text-xl font-bold mb-4">Done List</h2>
-      
-      <div ref={tasksRef} className="p-4 min-h-[200px]">
+      <Typography 
+        level="h2" 
+        sx={{ 
+          fontSize: '1.25rem', // text-xl
+          fontWeight: 'bold', 
+          mb: 4 
+        }}
+      >Done List</Typography>
+      <Box 
+        ref={tasksRef} 
+        sx={{ 
+          p: 4, 
+          minHeight: '200px' 
+        }}
+      >
         {tasks.map(task => (
           <TaskComponent 
             key={task.id} 
@@ -35,7 +55,7 @@ export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask }) {
             onUpdateTask={onUpdateTask}
           />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
