@@ -10,7 +10,7 @@ export default function DisplayComponent() {
         sx={{
             gridColumn: 'span 3',
             color: 'black',
-            backgroundColor: 'white',
+            backgroundColor: '#ffffc6',
             fontSize: 'xl2',
             fontWeight: 'bold',
             border: '1px solid black',

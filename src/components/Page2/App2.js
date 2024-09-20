@@ -1,8 +1,13 @@
 import CalculatorComponent from './CalculatorComponent';
+import { Box } from '@mui/joy';
 
 function App2() {
   return (
-    <div className="App2">
+    <Box 
+    sx={{
+      height:'850px'
+    }}
+    >
       <header className="App-header">
         
       </header>
@@ -12,7 +17,7 @@ function App2() {
 
       </main>
 
-    </div>
+    </Box>
   );
 }
 

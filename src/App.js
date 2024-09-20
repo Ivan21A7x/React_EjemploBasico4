@@ -1,15 +1,18 @@
 import './App.css';
-import { Box } from '@mui/joy';
+import { Box, CssBaseline } from '@mui/joy';
 import { useState } from 'react';
 import NavbarComponent from './components/PageMain/NavbarComponent';
-import AppMain from './components/PageMain/AppMain'; // Página principal
-import App1 from './components/Page1/App1'; // Página 1
-import App2 from './components/Page2/App2'; // Página 2
-import App3 from './components/Page3/App3'; // Página 3
+import AppMain from './components/PageMain/AppMain';
+import App1 from './components/Page1/App1';
+import App2 from './components/Page2/App2';
+import App3 from './components/Page3/App3';
 
 function App() {
   // Estado para controlar el componente actual
   const [activeComponent, setActiveComponent] = useState('PageMain');
+
+  // Estado para gestionar el tema
+  const [themeMode, setThemeMode] = useState('light');
 
   // Función para renderizar el componente según el estado activo
   const renderComponent = () => {
@@ -29,11 +32,14 @@ function App() {
     <Box
       className="App"
       sx={{
-        backgroundColor: 'lightgray',
+        backgroundColor: themeMode === 'light' ? 'white' : '#7c7c7c',
+        color: themeMode === 'light' ? 'black' : 'white',
+        minHeight: '100vh',
       }}
     >
+      <CssBaseline />
       {/* Pasamos setActiveComponent como prop a NavbarComponent */}
-      <NavbarComponent setActiveComponent={setActiveComponent} />
+      <NavbarComponent setThemeMode={setThemeMode} themeMode={themeMode} setActiveComponent={setActiveComponent} />
       
 
       {/* Aquí se muestra el componente actual */}

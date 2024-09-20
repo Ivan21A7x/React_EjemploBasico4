@@ -3,8 +3,10 @@ import { Box, Button, IconButton, Menu, MenuItem, Typography } from '@mui/joy';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-export default function NavbarComponent({ setActiveComponent }) {
+export default function NavbarComponent({ setActiveComponent, setThemeMode, themeMode }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   // Controlar apertura/cierre del menú
@@ -20,10 +22,15 @@ export default function NavbarComponent({ setActiveComponent }) {
     setAnchorEl(null);
   };
 
+  // Función para cambiar el tema
+  const toggleTheme = () => {
+    setThemeMode(themeMode === 'light' ? 'dark' : 'light');
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       {/* Barra de navegación */}
-      <AppBar position="static" sx={{ backgroundColor: 'lightgray' }}>
+      <AppBar position="static" sx={{ backgroundColor: themeMode === 'light' ? 'darkslateblue' : 'darkslateblue' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -35,9 +42,13 @@ export default function NavbarComponent({ setActiveComponent }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color:'white' }}>
             PORTAFOLIO REACT
           </Typography>
+          {/* Botón para cambiar el tema */}
+          <IconButton color="inherit" onClick={toggleTheme}>
+            {themeMode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
+          </IconButton>
         </Toolbar>
       </AppBar>
 
@@ -46,19 +57,26 @@ export default function NavbarComponent({ setActiveComponent }) {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
+        sx={{
+          backgroundColor: 'darkslateblue',
+          border:'none'
+        }}
       >
         <MenuItem onClick={handleMenuClose}>
           <Button
             onClick={() => setActiveComponent('PageMain')}
             sx={{
-              // backgroundColor: '#ADD8E6',
               color: 'white',
-              padding: '8px 16px',
-              margin: '8px',
+              backgroundColor: 'transparent',
+              border: 'solid black 1px',
+              // padding: '8px 16px',
+              // margin: '8px',
+              padding:'20px',
+              margin:'0px',
               width: '100%',
               textAlign: 'center',
-              fontWeight: 'bold',
               '&:hover': {
+                color: 'black',
                 backgroundColor: '#87CEEB',
               },
             }}
@@ -68,52 +86,61 @@ export default function NavbarComponent({ setActiveComponent }) {
           <Button
             onClick={() => setActiveComponent('App1')}
             sx={{
-              // backgroundColor: '#ADD8E6',
               color: 'white',
-              padding: '8px 16px',
-              margin: '8px',
+              backgroundColor: 'transparent',
+              border: 'solid black 1px',
+              // padding: '8px 16px',
+              // margin: '8px',
+              padding:'20px',
+              margin:'0px',
               width: '100%',
               textAlign: 'center',
-              fontWeight: 'bold',
               '&:hover': {
+                color: 'black',
                 backgroundColor: '#87CEEB',
               },
             }}
-          >Mostrar Componente 1</Button>
+          >Lista de usuarios</Button>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
           <Button
             onClick={() => setActiveComponent('App2')}
             sx={{
-              // backgroundColor: '#ADD8E6',
               color: 'white',
-              padding: '8px 16px',
-              margin: '8px',
+              backgroundColor: 'transparent',
+              border: 'solid black 1px',
+              // padding: '8px 16px',
+              // margin: '8px',
+              padding:'20px',
+              margin:'0px',
               width: '100%',
               textAlign: 'center',
-              fontWeight: 'bold',
               '&:hover': {
+                color: 'black',
                 backgroundColor: '#87CEEB',
               },
             }}
-          >Mostrar Componente 2</Button>
+          >Calculadora básica</Button>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
           <Button
             onClick={() => setActiveComponent('App3')}
             sx={{
-              // backgroundColor: '#ADD8E6',
               color: 'white',
-              padding: '8px 16px',
-              margin: '8px',
+              backgroundColor: 'transparent',
+              border: 'solid black 1px',
+              // padding: '8px 16px',
+              // margin: '8px',
+              padding:'20px',
+              margin:'0px',
               width: '100%',
               textAlign: 'center',
-              fontWeight: 'bold',
               '&:hover': {
+                color: 'black',
                 backgroundColor: '#87CEEB',
               },
             }}
-          >Mostrar Componente 3</Button>
+          >Taskboard</Button>
         </MenuItem>
       </Menu>
     </Box>

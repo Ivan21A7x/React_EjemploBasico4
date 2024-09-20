@@ -26,7 +26,7 @@ export default function CalculatorComponent() {
     <CalculatorProvider>
       <Box
       sx={{
-        m: 12,
+        m: 6,
         width: '500px',
         p: 5,
         display: 'grid',

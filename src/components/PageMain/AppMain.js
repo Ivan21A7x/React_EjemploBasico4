@@ -1,3 +1,5 @@
+import IntroComponent from "./IntroComponent";
+
 function AppMain() {
   return (
     <div className="AppMain">
@@ -6,7 +8,7 @@ function AppMain() {
       </header>
 
       <div>
-        
+        <IntroComponent></IntroComponent>
 
       </div>
 
