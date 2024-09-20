@@ -11,7 +11,7 @@ export default function DisplayComponent() {
             gridColumn: 'span 3',
             color: 'black',
             backgroundColor: 'white',
-            fontSize: '2xl',
+            fontSize: 'xl2',
             fontWeight: 'bold',
             border: '1px solid black',
             p: 5,

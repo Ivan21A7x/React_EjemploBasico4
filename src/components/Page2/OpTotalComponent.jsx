@@ -19,7 +19,7 @@ export default function OpTotalComponent() {
       px: 3,
       m: 2,
       textAlign: 'center',
-      fontSize: '2xl',
+      fontSize: 'xl2',
       fontWeight: 'bold',
       color: 'black',
       '&:hover': {
