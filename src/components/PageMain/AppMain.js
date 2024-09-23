@@ -3,16 +3,7 @@ import IntroComponent from "./IntroComponent";
 function AppMain() {
   return (
     <div className="AppMain">
-      <header className="App-header">
-
-      </header>
-
-      <div>
-        <IntroComponent></IntroComponent>
-
-      </div>
-
-
+      <IntroComponent></IntroComponent>
     </div>
   );
 }

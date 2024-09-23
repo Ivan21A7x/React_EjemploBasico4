@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import UserFormComponent from './UserFormComponent'
 import UserListComponent from './UserListComponent';
+import { Box } from '@mui/joy';
 
 function App1() {
   const [usuarios, setUsuarios] = useState([]);
@@ -10,11 +11,14 @@ function App1() {
   };
 
   return (
-    <div className="text-center font-sans bg-darkslateblue min-h-[640px]">
+    <Box sx={{
+      mt: '3vh',
+      textAlign: 'center',
+    }}>
       
       <UserFormComponent addUser={addUser}/>
       <UserListComponent usuarios={usuarios}/>
-    </div>          
+    </Box>          
   );
 }
 

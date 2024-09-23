@@ -7,7 +7,7 @@ export default function UserListComponent({ usuarios }) {
         return (
             <Typography
                 level="body1"
-                sx={{ color: 'text.primary', mb: 2, p: 2, fontWeight: 'bold' }}
+                sx={{ color: 'text.primary', mb: '2vh', fontWeight: 'bold', fontSize: { xs: '20px', sm: '25px', md: '35px', lg: '25px' }, }}
             >
                 Ingresa un usuario
             </Typography>
@@ -18,7 +18,7 @@ export default function UserListComponent({ usuarios }) {
         <div>
             <Typography
                 level="body1"
-                sx={{ color: 'text.primary', mb: 2, p: 2, fontWeight: 'bold' }}
+                sx={{ color: 'text.primary', m: '2vh', fontWeight: 'bold', fontSize: { xs: '20px', sm: '25px', md: '35px', lg: '25px' }, }}
             >Usuarios:</Typography>
             <Divider />
 

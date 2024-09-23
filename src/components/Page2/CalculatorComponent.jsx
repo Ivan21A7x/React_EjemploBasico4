@@ -19,47 +19,72 @@ import OpTotalComponent from './OpTotalComponent';
 import DisplayComponent from './DisplayComponent';
 import { CalculatorProvider } from './CalculatorProvider';
 import OpACComponent from './OpACComponent';
-import { Box } from '@mui/joy';
+import { Box, Grid } from '@mui/joy';
 
 export default function CalculatorComponent() {
   return (
     <CalculatorProvider>
-      <Box
+       <Box
       sx={{
-        m: 6,
-        width: '500px',
-        p: 5,
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        border: '1px solid black',
-        justifyItems: 'center',
-        alignItems: 'center',
-        mx: 'auto',
-        backgroundColor: 'darkslateblue',
-        borderRadius: 'lg',
+        display: 'flex',
+        flexDirection: 'column', // Para alinear en la dirección vertical
+        justifyContent: 'center', // Centrado vertical
+        alignItems: 'center',     // Centrado horizontal (opcional)
+        border: {
+          xs: 'solid red 2px',
+          sm: 'solid blue 2px',
+          md: 'solid black 2px',
+          lg: 'solid darkslateblue 2px'
+        }
+        
       }}
     >
-      <DisplayComponent sx={{ gridColumn: 'span 3' }} />
+      <Grid container
+        sx={{
+          // width: '90%',  // Calculadora ocupará el 90% del contenedor
+          width: {
+            xs: '90%',
+            sm: '80%',
+            md: '70%',
+            lg: '50%'
+          },
+          maxWidth: '100%', // Se ajusta al tamaño de la pantalla
+          backgroundColor: 'darkslateblue',
+          padding: '2rem',  // Espaciado interno utilizando unidades relativas
+          borderRadius: '1rem',  // Esquinas redondeadas relativas
+          border: '0.1rem solid black',  // Borde con unidad relativa
+          textAlign: 'center',
+        }}
+        spacing={0.5}
+      >
+        {/* Componente Display que ocupará las 12 columnas */}
+        <Grid xs={12}><DisplayComponent /></Grid>
 
-      <Number1Component />
-      <Number2Component />
-      <Number3Component />
-      <Number4Component />
-      <Number5Component />
-      <Number6Component />
-      <Number7Component />
-      <Number8Component />
-      <Number9Component />
-      <Number0Component />
-      <NumberDotComponent />
+        {/* Distribución de los números y operadores */}
+        <Grid xs={4}><Number1Component /></Grid>
+        <Grid xs={4}><Number2Component /></Grid>
+        <Grid xs={4}><Number3Component /></Grid>
 
-      <OpAddComponent />
-      <OpSubComponent />
-      <OpMulComponent />
-      <OpDivComponent />
-      <OpSqrComponent />
-      <OpTotalComponent />
-      <OpACComponent />
+        <Grid xs={4}><Number4Component /></Grid>
+        <Grid xs={4}><Number5Component /></Grid>
+        <Grid xs={4}><Number6Component /></Grid>
+
+        <Grid xs={4}><Number7Component /></Grid>
+        <Grid xs={4}><Number8Component /></Grid>
+        <Grid xs={4}><Number9Component /></Grid>
+
+        <Grid xs={4}><Number0Component /></Grid>
+        <Grid xs={4}><NumberDotComponent /></Grid>
+
+        {/* Operadores */}
+        <Grid xs={4}><OpAddComponent /></Grid>
+        <Grid xs={4}><OpSubComponent /></Grid>
+        <Grid xs={4}><OpMulComponent /></Grid>
+        <Grid xs={4}><OpDivComponent /></Grid>
+        <Grid xs={4}><OpSqrComponent /></Grid>
+        <Grid xs={4}><OpTotalComponent /></Grid>
+        <Grid xs={4}><OpACComponent /></Grid>
+      </Grid>
     </Box>
     </CalculatorProvider>
   );

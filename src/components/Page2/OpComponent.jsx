@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { CalculatorContext } from './CalculatorProvider';
 import { Button, Box } from '@mui/joy';
 
-export default function NumberComponent({ number }) {
-    const { selectNumber } = useContext(CalculatorContext);
-    
+export default function OpComponent({ operation, value }) {
+    const { handleOperation } = useContext(CalculatorContext);
+
     return (
         <Box
         sx={{
@@ -16,7 +16,7 @@ export default function NumberComponent({ number }) {
         }}
         >
             <Button
-            onClick={() => selectNumber(number)}
+            onClick={() => handleOperation(operation)}
             sx={{
                 backgroundColor: 'lightgray',
                 width: '100%',            // Ocupa todo el ancho disponible
@@ -31,8 +31,8 @@ export default function NumberComponent({ number }) {
                 },
             }}
             >
-            {number}
-        </Button>
-    </Box>
+            {value}
+            </Button>
+        </Box>
     );
 }

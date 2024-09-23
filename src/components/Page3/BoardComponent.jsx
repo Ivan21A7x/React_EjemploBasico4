@@ -3,7 +3,7 @@ import SecToDoComponent from './SecToDoComponent';
 import SecDoingComponent from './SecDoingComponent';
 import SecDoneComponent from './SecDoneComponent';
 import NewTaskComponent from './NewTaskComponent';
-import { Box } from '@mui/joy';
+import { Grid, Box } from '@mui/joy';
 
 const initialState = {
   todo: [],
@@ -65,20 +65,25 @@ export default function BoardComponent() {
   return (
     <Box
       sx={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        m: 2,
-        // minHeight: '550px',
-        height:'100%',
-        border: '1px solid',
-        borderColor: 'black',
-        textAlign: 'center',
-        placeItems: 'center',
+        // // display: 'grid',
+        // // gridTemplateColumns: 'repeat(3, 1fr)',
+        m: 1,
+        // // minHeight: '550px',
+        minHeight:'60vh',
+        border: '1px solid red',
+        // textAlign: 'center',
+        // placeItems: 'center',
       }}
     >
-      <SecToDoComponent tasks={state.todo} onMoveTask={moveTask} onUpdateTask={updateTaskText} />
-      <SecDoingComponent tasks={state.doing} onMoveTask={moveTask} onUpdateTask={updateTaskText} />
-      <SecDoneComponent tasks={state.done} onMoveTask={moveTask} onUpdateTask={updateTaskText} />
+      <Grid container flexGrow={1}>
+        <Grid xs={4}><SecToDoComponent tasks={state.todo} onMoveTask={moveTask} onUpdateTask={updateTaskText} /></Grid>
+        <Grid xs={4}><SecDoingComponent tasks={state.doing} onMoveTask={moveTask} onUpdateTask={updateTaskText} /></Grid>
+        <Grid xs={4}><SecDoneComponent tasks={state.done} onMoveTask={moveTask} onUpdateTask={updateTaskText} /></Grid>
+
+
+        
+        
+      </Grid>
       <NewTaskComponent onAddTask={addTask} />
     </Box>
   );

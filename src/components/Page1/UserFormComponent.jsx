@@ -1,107 +1,40 @@
 import { useState } from "react";
 import { Input, Button } from '@mui/joy';
 
-export default function UserFormComponent({addUser}) {
-    const [nombre, setNombre] = useState("");
-    const [edad, setEdad] = useState("");
-    const [id, setID] = useState("");
+export default function UserFormComponent({ addUser }) {
+    const [formData, setFormData] = useState({ nombre: "", edad: "", id: "" });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        if (nombre && edad && id) {
-            const nuevoUsuario = { nombre, edad, id };
-            addUser(nuevoUsuario);
-
-            console.log(nuevoUsuario);
-            
-            // Resetea los valores a cadenas vacías
-            setNombre("");
-            setEdad("");
-            setID("");
+        if (Object.values(formData).every(Boolean)) {
+            addUser(formData);
+            console.log(formData);
+            setFormData({ nombre: "", edad: "", id: "" });
         }
     };
 
-    return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center mt-9">
-            <Input
-                type="text" 
-                value={nombre} 
-                onChange={(e) => setNombre(e.target.value)} 
-                placeholder="Nombre"
-                size="md"
-                sx={{
-                    margin: '20px',
-                    fontWeight: 'bold',
-                    '--Input-focusedInset': 'var(--any, )',
-                    '--Input-focusedThickness': '0.25rem',
-                    '--Input-focusedHighlight': '#4CAF50',
-                    '&::before': {
-                        transition: 'box-shadow .15s ease-in-out',
-                    },
-                    '&:focus-within': {
-                        borderColor: 'darkslateblue',
-                    },
-                }}
-                required  
-            />
-            <Input 
-                type="number" 
-                value={edad} 
-                onChange={(e) => setEdad(e.target.value)} 
-                placeholder="Edad"
-                size="md"
-                sx={{
-                    margin: '20px',
-                    fontWeight: 'bold',
-                    '--Input-focusedInset': 'var(--any, )',
-                    '--Input-focusedThickness': '0.25rem',
-                    '--Input-focusedHighlight': '#4CAF50',
-                    '&::before': {
-                        transition: 'box-shadow .15s ease-in-out',
-                    },
-                    '&:focus-within': {
-                        borderColor: 'darkslateblue',
-                    },
-                }}
-                required  
-            />
-            <Input 
-                type="text" 
-                value={id} 
-                onChange={(e) => setID(e.target.value)} 
-                placeholder="ID" 
-                size="md"
-                sx={{
-                    margin: '20px',
-                    fontWeight: 'bold',
-                    '--Input-focusedInset': 'var(--any, )',
-                    '--Input-focusedThickness': '0.25rem',
-                    '--Input-focusedHighlight': '#4CAF50',
-                    '&::before': {
-                        transition: 'box-shadow .15s ease-in-out',
-                    },
-                    '&:focus-within': {
-                        borderColor: 'darkslateblue',
-                    },
-                }}
-                required  
-            />
-            <Button
-                type="submit"
-                size="lg"
-                variant="solid"
-                color="primary"
-                sx={{
-                    margin: '16px',
-                    // backgroundColor: '#4CAF50',
-                    // fontWeight: 'bold',
-                    // '&:hover': {
-                    //     backgroundColor: '#45A049',
-                    // },                        
-                }}
-            >Agregar usuario</Button>
+    const inputStyles = {
+        margin: '2vh',
+        fontWeight: 'bold',
+        fontSize: { xs: '20px', sm: '25px', md: '35px', lg: '25px' },
+        '--Input-focusedThickness': '0.25rem',
+        '--Input-focusedHighlight': '#4CAF50',
+        '&:focus-within': { borderColor: 'darkslateblue' },
+    };
 
+    return (
+        <form onSubmit={handleSubmit} className="flex flex-col items-center">
+            <Input name="nombre" value={formData.nombre} onChange={handleChange} placeholder="Nombre" size="md" sx={inputStyles} required />
+            <Input name="edad" type="number" value={formData.edad} onChange={handleChange} placeholder="Edad" size="md" sx={inputStyles} required />
+            <Input name="id" value={formData.id} onChange={handleChange} placeholder="ID" size="md" sx={inputStyles} required />
+            <Button type="submit" size="lg" variant="solid" color="primary" sx={{ margin: '3vh', fontSize: { xs: '20px', sm: '25px', md: '35px', lg: '25px' } }}>
+                Agregar usuario
+            </Button>
         </form>
     );
 }

@@ -43,7 +43,6 @@ export default function SecDoingComponent({ tasks, onMoveTask, onUpdateTask }) {
         ref={tasksRef} 
         sx={{ 
           p: 4, 
-          minHeight: '200px' 
         }}
       >
         {tasks.map(task => (
