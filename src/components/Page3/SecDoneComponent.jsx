@@ -52,6 +52,7 @@ export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask }) {
             section='done' 
             onDragStart={handleDragStart(task)} 
             onUpdateTask={onUpdateTask}
+            onMoveTask={onMoveTask}
           />
         ))}
       </Box>

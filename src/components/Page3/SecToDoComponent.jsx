@@ -52,6 +52,7 @@ export default function SecToDoComponent({ tasks, onMoveTask, onUpdateTask }) {
             section='todo' 
             onDragStart={handleDragStart(task)} 
             onUpdateTask={onUpdateTask}
+            onMoveTask={onMoveTask}
           />
         ))}
       </Box>
