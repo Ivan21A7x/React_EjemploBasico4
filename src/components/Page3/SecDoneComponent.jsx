@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import TaskComponent from './TaskComponent';
-import { Box, Typography } from '@mui/joy';
+import { Box, Grid, Typography } from '@mui/joy';
 
-export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask }) {
+export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask, onDeleteTask }) {
   const tasksRef = useRef(null);
 
   const handleDragStart = (task) => (e) => {
@@ -39,12 +39,7 @@ export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask }) {
           mb: 4 
         }}
       >Done List</Typography>
-      <Box 
-        ref={tasksRef} 
-        sx={{ 
-          p: 4, 
-        }}
-      >
+      <Grid ref={tasksRef} container spacing={2} sx={{ flexGrow: 1, p: '4' }}>
         {tasks.map(task => (
           <TaskComponent 
             key={task.id} 
@@ -53,9 +48,10 @@ export default function SecDoneComponent({ tasks, onMoveTask, onUpdateTask }) {
             onDragStart={handleDragStart(task)} 
             onUpdateTask={onUpdateTask}
             onMoveTask={onMoveTask}
+            onDeleteTask={onDeleteTask}
           />
         ))}
-      </Box>
+      </Grid>
     </Box>
   );
 }

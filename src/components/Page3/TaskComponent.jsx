@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Box, Textarea, Menu, MenuItem, IconButton } from '@mui/joy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-export default function TaskComponent({ task, section, onDragStart, onUpdateTask, onMoveTask }) {
+export default function TaskComponent({ task, section, onDragStart, onUpdateTask, onMoveTask, onDeleteTask }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuToggle = (event) => {
@@ -11,6 +11,11 @@ export default function TaskComponent({ task, section, onDragStart, onUpdateTask
 
   const handleMenuClose = () => setAnchorEl(null);
 
+  const handleDeleteTask = () => {
+    onDeleteTask(task.id);
+    handleMenuClose();
+  };
+
   const menuOpStyles = {
     color: 'white',
     textAlign: 'center'
@@ -18,7 +23,6 @@ export default function TaskComponent({ task, section, onDragStart, onUpdateTask
 
   const textRef = useRef(null);
 
-  // Manejador de cambio de texto
   const handleTextChange = (e) => {
     onUpdateTask(task.id, e.target.value, section);
   };
@@ -30,14 +34,21 @@ export default function TaskComponent({ task, section, onDragStart, onUpdateTask
     }
   }, [task.text]);
 
-  // Nueva función para mover tareas
   const handleMoveTask = (newSection) => {
     onMoveTask(task, section, newSection);
   };
 
   return (
-    <Box sx={{ border: 'solid black 2px', backgroundColor: 'lightgray' }}>
-      
+    <Box 
+      sx={{
+        border: 'solid black 2px', 
+        backgroundColor: 'lightgray',
+        width: { xs: '100%', sm: '50%', md: '33.33%', lg: '25%' }, // Responsividad para diferentes tamaños
+        boxSizing: 'border-box', // Garantiza que el padding y borde se incluyan en el ancho
+        padding: 2,
+        marginBottom: 2,
+      }}
+    >
       {/* Botón de menú desplegable */}
       <IconButton aria-label="more options" variant="plain" onClick={handleMenuToggle}>
         <MoreHorizIcon />
@@ -67,9 +78,7 @@ export default function TaskComponent({ task, section, onDragStart, onUpdateTask
         <MenuItem onClick={() => handleMoveTask('todo')} sx={menuOpStyles}>Mover a To Do List</MenuItem>
         <MenuItem onClick={() => handleMoveTask('doing')} sx={menuOpStyles}>Mover a Doing List</MenuItem>
         <MenuItem onClick={() => handleMoveTask('done')} sx={menuOpStyles}>Mover a Done List</MenuItem>
-        <MenuItem onClick={handleMenuClose} sx={menuOpStyles}>Subir prioridad</MenuItem>
-        <MenuItem onClick={handleMenuClose} sx={menuOpStyles}>Bajar prioridad</MenuItem>
-        <MenuItem onClick={handleMenuClose} sx={menuOpStyles}>Borrar tarea</MenuItem>
+        <MenuItem onClick={handleDeleteTask} sx={menuOpStyles}>Borrar tarea</MenuItem>
       </Menu>
     </Box>
   );
