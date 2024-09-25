@@ -30,12 +30,6 @@ export default function CalculatorComponent() {
         flexDirection: 'column', // Para alinear en la dirección vertical
         justifyContent: 'center', // Centrado vertical
         alignItems: 'center',     // Centrado horizontal (opcional)
-        border: {
-          xs: 'solid red 2px',
-          sm: 'solid blue 2px',
-          md: 'solid black 2px',
-          lg: 'solid darkslateblue 2px'
-        }
         
       }}
     >
