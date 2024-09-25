@@ -47,11 +47,19 @@ export default function NavbarComponent({ setActiveComponent, setThemeMode, them
         </Toolbar>
       </AppBar>
 
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose} sx={{ backgroundColor: 'darkslateblue', paddingTop:'3vh' }}>
-        {['PageMain', 'App1', 'App2', 'App3'].map((component, index) => (
+      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose} sx={{ backgroundColor: 'darkslateblue', paddingTop: '3vh' }}>
+        {['PageMain', 'App1', 'App2', 'App3', 'Experiment'].map((component, index) => (
           <MenuItem key={index} onClick={handleMenuClose}>
             <Button onClick={() => setActiveComponent(component)} sx={buttonStyles}>
-              {component === 'PageMain' ? 'Home' : component === 'App1' ? 'Lista de usuarios' : component === 'App2' ? 'Calculadora básica' : 'Taskboard'}
+              {component === 'PageMain'
+                ? 'Home'
+                : component === 'App1'
+                ? 'Lista de usuarios'
+                : component === 'App2'
+                ? 'Calculadora básica'
+                : component === 'App3'
+                ? 'Taskboard'
+                : 'Experimento'}
             </Button>
           </MenuItem>
         ))}

@@ -7,6 +7,7 @@ import AppMain from './components/PageMain/AppMain';
 import App1 from './components/Page1/App1';
 import App2 from './components/Page2/App2';
 import App3 from './components/Page3/App3';
+import Experiment from './components/PageMain/Experiment';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('PageMain');
@@ -20,6 +21,8 @@ function App() {
         return <App2 />;
       case 'App3':
         return <App3 />;
+      case 'Experiment':
+        return <Experiment />;
       default:
         return <AppMain />;
     }
